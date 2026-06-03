@@ -41,19 +41,3 @@ grafico<-ggplot(df_clean, aes(x = Perfil_Sociabilidad, y = obligaciones, fill = 
   theme(legend.position = "none")
 
 print(grafico)
-
-grafico2<-ggplot(
-  df,
-  aes(
-    x = `Generación`,
-    y = tension_prom
-  )
-) +
-  geom_boxplot() +
-  theme_minimal(base_size = 14) +
-  labs(
-    title = "Distribución del estrés según generación",
-    x = "Generación",
-    y = "Estrés promedio"
-  )
-print(grafico2)
