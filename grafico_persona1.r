@@ -1,6 +1,8 @@
 library(ggplot2)
 library(tidyverse)
 
+
+
 # Leer CSV
 escenarios <- read.csv(
   "/home/ginoricciuto/computacionAfectiva/datos.csv",
@@ -9,9 +11,11 @@ escenarios <- read.csv(
 )
 names(escenarios) <- make.unique(names(escenarios))
 
+nombre <- "Paola1416Mabel"
+
 # Filtrar usuario
 usuario_df <- escenarios %>%
-  filter(identificacion == "Gabriela10110Angel") %>%
+  filter(identificacion == nombre) %>%
   
   # Crear fecha-hora
   mutate(
@@ -46,7 +50,8 @@ p <- ggplot(
   usuario_df,
   aes(
     x = Hora_dt,
-    y = `Etiqueta Actividad Resumida`
+    y = `Etiqueta Actividad`
+    
   )
 ) +
   
@@ -67,7 +72,7 @@ p <- ggplot(
   geom_text(
     aes(label = Emocion_Dominante),
     vjust = -1,
-    size = 3
+    size = 5
   ) +
   
   scale_x_datetime(
@@ -78,7 +83,7 @@ p <- ggplot(
   theme_minimal() +
   
   labs(
-    title = "Línea de Tiempo Afectiva: Claudia10103Eduardo",
+    title = paste("Línea de Tiempo Afectiva: ", nombre),
     subtitle = "Actividad, Interacción Social y Emoción Predominante",
     x = "Hora del Día",
     y = "Actividad",
@@ -87,7 +92,10 @@ p <- ggplot(
   ) +
   
   theme(
-    legend.position = "bottom"
+    legend.position = "bottom",
+    axis.text.y = element_text(size = 12),
+    axis.text.x = element_text(size = 10)
+
   )
 
 print(p)
